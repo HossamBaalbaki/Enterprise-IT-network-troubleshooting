@@ -1,1 +1,20 @@
+<#
+.SYNOPSIS
+Exports list of AD users and their last logon time
+#>
 
+# Import Active Directory module
+Import-Module ActiveDirectory
+
+# Export path
+$exportPath = "C:\AD_Audit\ADUsers.csv"
+if (!(Test-Path "C:\AD_Audit")) {
+    New-Item -ItemType Directory -Path "C:\AD_Audit"
+}
+
+# Get AD users
+Get-ADUser -Filter * -Properties DisplayName, LastLogonDate |
+    Select-Object DisplayName, SamAccountName, LastLogonDate |
+    Export-Csv -Path $exportPath -NoTypeInformation
+
+Write-Output "AD User Audit completed. CSV saved to $exportPath"
