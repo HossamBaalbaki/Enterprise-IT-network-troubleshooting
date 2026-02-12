@@ -60,4 +60,4 @@ Error: “Authentication Failed” despite correct credentials.
 
 ## Lessons Learned
 - VPN license limits can silently block users  
-- Proactive monitoring prevents service disruption
+- Proactive monitoring prevents service disruption.
